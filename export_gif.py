@@ -38,7 +38,13 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
         output_path = context.scene.render.filepath
         first_img, image_list = self.load_image_file(context)
 
-        first_img.save(output_path+'/out.gif', save_all=True, transparency=255, append_images=image_list)
+        first_img.save(
+            output_path+"/out.gif",
+            save_all=True,
+            loop=0,
+            transparency=255,
+            disposal=2,
+            append_images=image_list)
         return {"FINISHED"}
 
 
