@@ -22,10 +22,14 @@ class test_Panell(bpy.types.Panel):
     bl_region_type = 'UI'
     bl_label = "export"
     bl_category = "Gif Exporter"
-    def draw(self, _):
+
+    bpy.types.Scene.loop_counts = bpy.props.IntProperty(name = "",)
+
+    def draw(self, context):
         layout = self.layout
         col = layout.column(align=True)
-        col.label(text="出力フォルダの指定")
+        col.label(text="loop counts  (0 = infinite)")
+        col.prop(context.scene, "loop_counts", text="loop counts")
         col.operator("run.export_gif", text="export_gif")
 
 
