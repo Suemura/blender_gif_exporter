@@ -35,8 +35,8 @@ class test_Panell(bpy.types.Panel):
         # col.label(text="loop counts  (0 = infinite)")
         col.prop(context.scene, "use_alpha", text="use_alpha")
         col.prop(context.scene, "invert", text="invert")
-        col.prop(context.scene, "loop_counts", text="loop counts(milliseconds)")
-        col.prop(context.scene, "duration", text="duration")
+        col.prop(context.scene, "loop_counts", text="loop counts")
+        col.prop(context.scene, "duration", text="duration(milliseconds)")
         col.operator("run.export_gif", text="export_gif")
 
 
