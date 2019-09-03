@@ -41,7 +41,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
         first_img.save(
             output_path+"/out.gif",
             save_all=True,
-            loop=context.scene["loop_counts"],
+            loop=abs(context.scene["loop_counts"]),
             transparency=255,
             disposal=2,
             append_images=image_list)
