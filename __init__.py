@@ -23,20 +23,20 @@ class test_Panell(bpy.types.Panel):
     bl_label = "export"
     bl_category = "Gif Exporter"
 
-    bpy.types.Scene.loop_counts = bpy.props.IntProperty(name = "", default = 0)
-    bpy.types.Scene.use_alpha = bpy.props.BoolProperty(name = "", default = False)
-    bpy.types.Scene.invert = bpy.props.BoolProperty(name = "", default = False)
-    bpy.types.Scene.duration = bpy.props.IntProperty(name = "", default = 1000)
+    bpy.types.Scene.gif_loop_counts = bpy.props.IntProperty(name = "", default = 0, min = 0)
+    bpy.types.Scene.gif_use_alpha = bpy.props.BoolProperty(name = "", default = False)
+    bpy.types.Scene.gif_invert = bpy.props.BoolProperty(name = "", default = False)
+    bpy.types.Scene.gif_duration = bpy.props.IntProperty(name = "", default = 100)
 
 
     def draw(self, context):
         layout = self.layout
         col = layout.column(align=True)
         # col.label(text="loop counts  (0 = infinite)")
-        col.prop(context.scene, "use_alpha", text="use_alpha")
-        col.prop(context.scene, "invert", text="invert")
-        col.prop(context.scene, "loop_counts", text="loop counts")
-        col.prop(context.scene, "duration", text="duration(milliseconds)")
+        col.prop(context.scene, "gif_use_alpha", text="use_alpha")
+        col.prop(context.scene, "gif_invert", text="invert")
+        col.prop(context.scene, "gif_loop_counts", text="loop counts")
+        col.prop(context.scene, "gif_duration", text="duration(milliseconds)")
         col.operator("run.export_gif", text="export_gif")
 
 
