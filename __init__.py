@@ -22,7 +22,6 @@ class test_Panell(bpy.types.Panel):
     bl_region_type = 'UI'
     bl_label = "export"
     bl_category = "Gif Exporter"
-    bl_options = {'DEFAULT_CLOSED'}
     def draw(self, _):
         layout = self.layout
         col = layout.column(align=True)
