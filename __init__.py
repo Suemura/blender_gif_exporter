@@ -15,7 +15,8 @@ bl_info = {
 import bpy
 import os, os.path
 from . import export_gif
-
+from bpy.props import *
+from bpy_extras.io_utils import ImportHelper
 
 class GIF_PT_tools(bpy.types.Panel):
     bl_space_type = 'IMAGE_EDITOR'
@@ -27,6 +28,7 @@ class GIF_PT_tools(bpy.types.Panel):
     bpy.types.Scene.gif_use_alpha = bpy.props.BoolProperty(name = "", default = False)
     bpy.types.Scene.gif_invert = bpy.props.BoolProperty(name = "", default = False)
     bpy.types.Scene.gif_duration = bpy.props.IntProperty(name = "", default = 100)
+    bpy.types.Scene.gif_output_directory = bpy.props.StringProperty(name = "",)
 
 
     def draw(self, context):
@@ -37,9 +39,18 @@ class GIF_PT_tools(bpy.types.Panel):
         col.prop(context.scene, "gif_invert", text="invert")
         col.prop(context.scene, "gif_loop_counts", text="loop counts")
         col.prop(context.scene, "gif_duration", text="duration(milliseconds)")
-        col.operator("run.export_gif", text="export_gif")
+        col.operator("gif.open_filebrowser", text="set_output_directory")
+        col.operator("gif.export_gif", text="export_gif")
 
+class GIF_OT_open_filebrowser(bpy.types.Operator, ImportHelper):
+    bl_idname = "gif.open_filebrowser"
+    bl_label = "Set output path"
+    filter_glob = StringProperty( default="*", options={'HIDDEN'} )
 
+    def execute(self, context):
+        filename, extension = os.path.splitext(self.filepath)
+        context.scene["gif_output_directory"] = self.filepath
+        return {'FINISHED'}
 
 # クラスの登録
 def register():
@@ -55,7 +66,8 @@ def unregister():
 # 登録するクラス
 classes = [
     export_gif.GIF_OT_ExportOperator,
-    GIF_PT_tools
+    GIF_PT_tools,
+    GIF_OT_open_filebrowser
 ]
 
 if __name__ == '__main__':

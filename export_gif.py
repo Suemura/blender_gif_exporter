@@ -1,19 +1,8 @@
 import bpy, glob
 from PIL import Image, ImageDraw
 
-def append_button_header(self, context):
-    layout = self.layout
-    layout.separator()
-    print("add button")
-    if bpy.context.space_data.image is not None:
-        layout.operator(
-            "run.export_gif",
-            text="export_GIF",
-            icon='FILE_FOLDER'
-            )
-
 class GIF_OT_ExportOperator(bpy.types.Operator):
-    bl_idname = "run.export_gif"
+    bl_idname = "gif.export_gif"
     bl_label = "auto add materials"
     bl_options = {"REGISTER", "UNDO"}
 
@@ -54,7 +43,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
         # save
         if context.scene["gif_use_alpha"] == True:
             first_img.save(
-                output_path+"/out.gif",
+                context.scene["gif_output_directory"] + "/out.gif",
                 save_all = True,
                 loop = abs(context.scene["gif_loop_counts"]),
                 duration = abs(context.scene["gif_duration"]),
@@ -63,7 +52,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
                 append_images=image_list)
         else:
             first_img.save(
-                output_path+"/out.gif",
+                context.scene["gif_output_directory"] + "/out.gif",
                 save_all = True,
                 loop = abs(context.scene["gif_loop_counts"]),
                 duration = abs(context.scene["gif_duration"]),
