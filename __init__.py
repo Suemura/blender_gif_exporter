@@ -17,7 +17,7 @@ import os, os.path
 from . import export_gif
 
 
-class test_Panell(bpy.types.Panel):
+class GIF_PT_tools(bpy.types.Panel):
     bl_space_type = 'IMAGE_EDITOR'
     bl_region_type = 'UI'
     bl_label = "export"
@@ -55,7 +55,7 @@ def unregister():
 # 登録するクラス
 classes = [
     export_gif.GIF_OT_ExportOperator,
-    test_Panell
+    GIF_PT_tools
 ]
 
 if __name__ == '__main__':
