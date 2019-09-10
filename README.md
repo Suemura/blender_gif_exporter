@@ -11,3 +11,6 @@ I wanted the rendered image to be a GIF file immediately.
 ## How to?
 Just press the button once you have rendered.  
 Refer to the output destination set in Blender and export as a Gif file.  
+
+images import from "render.filepath" on blender setting.  
+gif image output to "gif_output_directory" on this addon setting.  
