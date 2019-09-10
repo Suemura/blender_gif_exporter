@@ -1,5 +1,5 @@
 bl_info = {
-    "name": "gix_exporter",
+    "name": "gif_exporter",
     "author": "Suemura",
     "blender": (2, 80, 0),
     "version": (0, 0, 0), # test
@@ -24,11 +24,13 @@ class GIF_PT_tools(bpy.types.Panel):
     bl_label = "export"
     bl_category = "Gif Exporter"
 
+    # properties
     bpy.types.Scene.gif_loop_counts = bpy.props.IntProperty(name = "", default = 0, min = 0)
     bpy.types.Scene.gif_use_alpha = bpy.props.BoolProperty(name = "", default = False)
     bpy.types.Scene.gif_invert = bpy.props.BoolProperty(name = "", default = False)
     bpy.types.Scene.gif_duration = bpy.props.IntProperty(name = "", default = 100)
     bpy.types.Scene.gif_output_directory = bpy.props.StringProperty(name = "",)
+    bpy.types.Scene.gif_output_name = bpy.props.StringProperty(name = "",)
 
 
     def draw(self, context):
@@ -41,6 +43,10 @@ class GIF_PT_tools(bpy.types.Panel):
         col.prop(context.scene, "gif_duration", text="duration(milliseconds)")
         col.operator("gif.open_filebrowser", text="set_output_directory")
         col.operator("gif.export_gif", text="export_gif")
+        col.label(text="output_directory")
+        col.prop(context.scene, "gif_output_directory", text="output_directory")
+        col.prop(context.scene, "gif_output_name", text="output_directory")
+
 
 class GIF_OT_open_filebrowser(bpy.types.Operator, ImportHelper):
     bl_idname = "gif.open_filebrowser"
@@ -49,7 +55,11 @@ class GIF_OT_open_filebrowser(bpy.types.Operator, ImportHelper):
 
     def execute(self, context):
         filename, extension = os.path.splitext(self.filepath)
-        context.scene["gif_output_directory"] = self.filepath
+        path_pair = os.path.split(self.filepath)
+        context.scene["gif_output_directory"] = path_pair[0]
+        context.scene["gif_output_name"] = path_pair[1]
+        if context.scene["gif_output_name"] == "":
+            context.scene["gif_output_name"] = "out.gif"
         return {'FINISHED'}
 
 # クラスの登録

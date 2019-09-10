@@ -1,4 +1,4 @@
-import bpy, glob
+import bpy, glob, os, os.path
 from PIL import Image, ImageDraw
 
 class GIF_OT_ExportOperator(bpy.types.Operator):
@@ -43,7 +43,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
         # save
         if context.scene["gif_use_alpha"] == True:
             first_img.save(
-                context.scene["gif_output_directory"] + "/out.gif",
+                context.scene["gif_output_directory"] + "/" +context.scene["gif_output_name"],
                 save_all = True,
                 loop = abs(context.scene["gif_loop_counts"]),
                 duration = abs(context.scene["gif_duration"]),
@@ -52,7 +52,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
                 append_images=image_list)
         else:
             first_img.save(
-                context.scene["gif_output_directory"] + "/out.gif",
+                context.scene["gif_output_directory"] + "/" +context.scene["gif_output_name"],
                 save_all = True,
                 loop = abs(context.scene["gif_loop_counts"]),
                 duration = abs(context.scene["gif_duration"]),
