@@ -44,8 +44,8 @@ class GIF_PT_tools(bpy.types.Panel):
         col.operator("gif.open_filebrowser", text="set_output_directory")
         col.operator("gif.export_gif", text="export_gif")
         col.label(text="output_directory")
-        col.prop(context.scene, "gif_output_directory", text="output_directory")
-        col.prop(context.scene, "gif_output_name", text="output_directory")
+        col.prop(context.scene, "gif_output_directory", text="path")
+        col.prop(context.scene, "gif_output_name", text="name")
 
 
 class GIF_OT_open_filebrowser(bpy.types.Operator, ImportHelper):
