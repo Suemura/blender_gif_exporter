@@ -34,13 +34,11 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
 
         return image_list[0], image_list[1:]
 
+    def save_image(self, context, first_img, image_list):
 
-    def execute(self, context):
-        print("test : execute")
-        output_path = context.scene.render.filepath
-        first_img, image_list = self.load_image_file(context)
+        if context.scene["gif_output_name"].find(".gif") != -1:
+            context.scene["gif_output_name"] = context.scene["gif_output_name"] + ".gif"
 
-        # save
         if context.scene["gif_use_alpha"] == True:
             first_img.save(
                 context.scene["gif_output_directory"] + "/" +context.scene["gif_output_name"],
@@ -58,6 +56,15 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
                 duration = abs(context.scene["gif_duration"]),
                 disposal = 1,
                 append_images=image_list)
+
+
+    def execute(self, context):
+        print("test : execute")
+        output_path = context.scene.render.filepath
+        first_img, image_list = self.load_image_file(context)
+
+        self.save_image(context, first_img, image_list)
+
         return {"FINISHED"}
 
 
