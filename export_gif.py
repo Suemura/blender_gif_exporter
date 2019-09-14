@@ -35,7 +35,8 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
         return image_list[0], image_list[1:]
 
     def save_image(self, context, first_img, image_list):
-        if context.scene["gif_output_name"].find(".gif") != 4:
+        path, ext = os.path.splitext(context.scene["gif_output_name"])
+        if ext != ".gif":
             context.scene["gif_output_name"] = context.scene["gif_output_name"] + ".gif"
 
         if context.scene["gif_use_alpha"] == True:
