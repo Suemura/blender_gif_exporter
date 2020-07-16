@@ -1,7 +1,7 @@
 # blender_gif_exporter
-<img width="324" alt="out.gif (785.6 kB)" src="https://img.esa.io/uploads/production/attachments/9489/2020/07/16/78640/aa99aad6-f6cf-4e43-a991-5aeb8c2d68f2.gif">  
+<img width="1920" alt="out.gif (720.8 kB)" src="https://img.esa.io/uploads/production/attachments/9489/2020/07/16/78640/3351bca1-aedd-455b-a1ad-d2c40b716fe7.gif">
 
-**This add-on is incomplete.**  
+<img width="20" alt="out.gif (785.6 kB)" src="https://img.esa.io/uploads/production/attachments/9489/2020/07/16/78640/aa99aad6-f6cf-4e43-a991-5aeb8c2d68f2.gif">**This add-on is incomplete.**<img width="20" alt="out.gif (785.6 kB)" src="https://img.esa.io/uploads/production/attachments/9489/2020/07/16/78640/aa99aad6-f6cf-4e43-a991-5aeb8c2d68f2.gif">  
 This add-on creates a gif file from multiple images rendered with Blender.
 
 ## Why?
