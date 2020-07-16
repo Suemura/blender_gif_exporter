@@ -8,7 +8,13 @@ This add-on creates a gif file from multiple images rendered with Blender.
 I wanted the rendered image to be a GIF file immediately.  
 
 ## Where?
-`IMAGE_EDITOR > UI > Gif Exporter`
+`IMAGE_EDITOR > UI > Gif Exporter `
+
+## Installation
+install pillow  
+
+`$ cd C:\Program Files\Blender Foundation\Blender 2.83\2.83\python\bin `  
+` $ .\python.exe -m pip install pillow `  
 
 ## How to use?
 Just press the button once you have rendered.  
