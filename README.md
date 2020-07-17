@@ -14,7 +14,7 @@ I wanted the rendered image to be a GIF file immediately.
 install pillow  
 
 `$ cd C:\Program Files\Blender Foundation\Blender 2.83\2.83\python\bin `  
-` $ .\python.exe -m pip install pillow `  
+`$ .\python.exe -m pip install pillow `  
 
 ## How to use?
 Just press the button once you have rendered.  
