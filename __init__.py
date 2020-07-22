@@ -13,7 +13,7 @@ bl_info = {
 }
 
 import bpy
-import os, os.path
+import os, os.path, sys, subprocess
 from . import export_gif
 from bpy.props import *
 from bpy_extras.io_utils import ImportHelper
@@ -132,6 +132,7 @@ def unregister():
 
 # 登録するクラス
 classes = [
+    GIF_PT_preferences,
     GIF_PT_tools,
     GIF_OT_InstallPillow,
     GIF_OT_open_filebrowser,
