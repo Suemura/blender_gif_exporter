@@ -2,7 +2,7 @@ bl_info = {
     "name": "gif_exporter",
     "author": "Masato Suemura",
     "blender": (2, 80, 0),
-    "version": (0, 0, 0), # test
+    "version": (1, 0, 0), # test
     "location": "UV/Image Editor and View Layers",
     "category": "Render",
     "description": "export gif image file",
@@ -19,7 +19,7 @@ from bpy.props import *
 from bpy_extras.io_utils import ImportHelper
 
 class GIF_OT_InstallPillow(bpy.types.Operator):
-    bl_idname = "lut.install_pillow"
+    bl_idname = "gif.install_pillow"
     bl_label = "install pillow"
     bl_options = {"REGISTER", "UNDO"}
     mode = StringProperty()
@@ -36,10 +36,10 @@ class GIF_OT_InstallPillow(bpy.types.Operator):
         print(package_list)
 
         if "Pillow" in package_list:
-            context.scene["colour_science_status"] = "Installed!"
+            context.scene["pillow_status"] = "Installed!"
             return True
         else:
-            context.scene["colour_science_status"] = "Not Installed."
+            context.scene["pillow_status"] = "Not Installed."
             return False
 
     def execute(self, context):
@@ -60,6 +60,20 @@ class GIF_OT_InstallPillow(bpy.types.Operator):
         elif self.mode == "UNINSTALL":
             subprocess.call(pip_uninstall_command, shell=True)
         return {"FINISHED"}
+
+class GIF_PT_preferences(bpy.types.AddonPreferences):
+    bl_idname = __package__
+    bpy.types.Scene.pillow_status = bpy.props.StringProperty(name = "", default="Please Check.")
+    def draw(self, context):
+        scene = context.scene
+        layout = self.layout
+        layout.label(text="initial settings : ")
+        row = layout.row(align=True)
+        row.operator("gif.install_pillow", text="check").mode = "CHECK"
+        row.prop(scene, "pillow_status", text="")
+        layout.operator("gif.install_pillow", text="install pillow package").mode = "INSTALL"
+        layout.label(text="If you want to uninstall the library, please show the console", icon="ERROR")
+        layout.operator("gif.install_pillow", text="uninstall pillow package").mode = "UNINSTALL"
 
 class GIF_PT_tools(bpy.types.Panel):
     bl_space_type = 'IMAGE_EDITOR'
