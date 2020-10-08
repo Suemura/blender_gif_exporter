@@ -104,7 +104,6 @@ class GIF_PT_tools(bpy.types.Panel):
         col.prop(context.scene, "gif_output_directory", text="path")
         col.prop(context.scene, "gif_output_name", text="name")
 
-
 class GIF_OT_open_filebrowser(bpy.types.Operator, ImportHelper):
     bl_idname = "gif.open_filebrowser"
     bl_label = "Set output path"
