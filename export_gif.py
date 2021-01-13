@@ -1,5 +1,4 @@
 import bpy, glob, os, os.path
-from PIL import Image, ImageDraw
 
 class GIF_OT_ExportOperator(bpy.types.Operator):
     bl_idname = "gif.export_gif"
@@ -59,6 +58,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
 
 
     def execute(self, context):
+        from PIL import Image, ImageDraw
         print("test : execute")
         output_path = context.scene.render.filepath
         first_img, image_list = self.load_image_file(context)

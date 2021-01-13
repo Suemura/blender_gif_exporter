@@ -1,8 +1,8 @@
 bl_info = {
     "name": "gif_exporter",
     "author": "Masato Suemura",
-    "blender": (2, 80, 0),
-    "version": (1, 0, 0), # test
+    "blender": (2, 92, 0),
+    "version": (1, 1, 0), # test
     "location": "UV/Image Editor and View Layers",
     "category": "Render",
     "description": "export gif image file",
@@ -133,9 +133,9 @@ def unregister():
 classes = [
     GIF_PT_preferences,
     GIF_PT_tools,
-    GIF_OT_InstallPillow,
+    # GIF_OT_InstallPillow,
     GIF_OT_open_filebrowser,
-    export_gif.GIF_OT_ExportOperator
+    # export_gif.GIF_OT_ExportOperator
 ]
 
 if __name__ == '__main__':
