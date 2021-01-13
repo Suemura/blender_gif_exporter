@@ -7,6 +7,7 @@ class GIF_OT_ExportOperator(bpy.types.Operator):
 
     def load_image_file(self, context):
         print("test : load_image_file")
+        from PIL import Image, ImageDraw
         output_path = context.scene.render.filepath
         image_path_list = glob.glob(output_path+"/*.png", recursive=True)
         image_path_list.sort()
