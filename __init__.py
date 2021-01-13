@@ -1,8 +1,8 @@
 bl_info = {
     "name": "gif_exporter",
     "author": "Masato Suemura",
-    "blender": (2, 80, 0),
-    "version": (1, 0, 0), # test
+    "blender": (2, 92, 0),
+    "version": (1, 1, 0), # test
     "location": "UV/Image Editor and View Layers",
     "category": "Render",
     "description": "export gif image file",
@@ -46,11 +46,12 @@ class GIF_OT_InstallPillow(bpy.types.Operator):
         # python.exeのパスを取得
         blender_version = str(bpy.app.version_string)[:4]
         blender_pass = str(sys.executable)
-        python_dir = os.path.dirname(blender_pass) +"\\"+blender_version+ "\\python\\bin\\"
+        python_dir = os.path.dirname(blender_pass)# +"\\"+blender_version+ "\\python\\bin\\"
         python_pass = python_dir + "python.exe"
+        print(python_dir)
         os.chdir(python_dir)
-        pip_install_command = ".\python.exe -m pip install pillow"
-        pip_uninstall_command = ".\python.exe -m pip uninstall pillow"
+        pip_install_command = ".\python.exe -m pip install pillow --user"
+        pip_uninstall_command = ".\python.exe -m pip uninstall pillow --user"
 
         installed = False
         if self.mode == "CHECK":

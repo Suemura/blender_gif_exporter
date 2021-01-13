@@ -22,7 +22,7 @@ image_list = load_gif_images(input_path)
 for img in image_list:
     frames = get_frames(img)
     file_name = os.path.basename(img)# ファイル名を取得
-    
+
     # フレームごとに分解してリサイズ
     image_list = []
     for f in frames:
@@ -34,7 +34,7 @@ for img in image_list:
         # mask = Image.eval(alpha, lambda a: 255 if a <=128 else 0)
         # f.paste(255, mask)
         image_list.append(f_resize)
-    
+
     # 保存の仕方は、最初の一枚で「.save()」をし、残りのフレームはappend_imagesで渡す
     # 最適化をすると透過がバグるため、optimizeはTrueにはしない
     image_list[0].save(
