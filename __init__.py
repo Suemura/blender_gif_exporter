@@ -133,9 +133,9 @@ def unregister():
 classes = [
     GIF_PT_preferences,
     GIF_PT_tools,
-    # GIF_OT_InstallPillow,
+    GIF_OT_InstallPillow,
     GIF_OT_open_filebrowser,
-    # export_gif.GIF_OT_ExportOperator
+    export_gif.GIF_OT_ExportOperator
 ]
 
 if __name__ == '__main__':
